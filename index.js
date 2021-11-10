@@ -50,7 +50,7 @@ if(!db)
 else
     console.log("Db connected successfully")
 
-// init app
+// init ap
 var app = express(); 
 
 //set the template engine  
