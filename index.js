@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 
 // Sell Car Model
-var sellcarModel = require('./sellcarModel');
+var sellcarModel = require('./app/models/sellcarModel');
 
 // Excel to JSON
 var excelToJson = require('convert-excel-to-json');
@@ -113,9 +113,9 @@ function importExcelData2MongoDB(filePath){
     }
 
 // Import Routes
-var apiRoutes = require("./api-routes"); //importing the added js file for api routes
+var apiRoutes = require("./app/routes/api-routes"); //importing the added js file for api routes
 
-var carRoutes = require("./car-routes"); 
+var carRoutes = require("./app/routes/car-routes"); 
 
 
 

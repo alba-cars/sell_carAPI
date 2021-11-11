@@ -1,5 +1,5 @@
 // Import Sell Car Model
-SellCar = require('./sellcarModel');
+SellCar = require('../models/sellcarModel');
 
 // Handle Index Actions
 exports.index = function (req, res) { 

@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 // Import Sell Car Controller
-var sellcarController = require('./sell_carController');
+var sellcarController = require('../controllers/sell_carController');
 
 // Sell Car Routes
 router.route('/sellcar')

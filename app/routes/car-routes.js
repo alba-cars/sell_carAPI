@@ -2,7 +2,7 @@
 let router = require('express').Router();
 
 // Import Sell Car Controller
-var carController = require('./carController');
+var carController = require('../controllers/carController');
 
 // Sell Car Routes
 router.route('/')
