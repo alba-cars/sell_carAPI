@@ -1,9 +1,6 @@
 // Import express
 var express = require('express');
 
-// Import Body Parser
-var bodyParser = require('body-parser');
-
 // Import Mongoose
 var mongoose = require('mongoose');
 
@@ -36,7 +33,7 @@ var uploads = multer({
 
 // Connect to Mongoose and set connection variable
 // Deprecated: mongoose.connect('mongodb://localhost/resthub');
-mongoose.connect('mongodb://localhost/resthub', {
+mongoose.connect('mongodb://127.0.0.1/resthub', {
     useNewUrlParser: true
 })
 .then(()=>console.log('connected to db'))  
@@ -57,10 +54,10 @@ var app = express();
 app.set('view engine','ejs'); 
 
 // Configure bodyparser to handle post requests
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
+// app.use(express.urlencoded({
+//     extended: true
+// }));
+app.use(express.json());
 
 //static folder  
 app.use(express.static(path.resolve(__dirname,'public')));  
@@ -115,13 +112,10 @@ function importExcelData2MongoDB(filePath){
         fs.unlinkSync(filePath);
     }
 
-// Initialize the app
-var app = express();
-
 // Import Routes
 var apiRoutes = require("./api-routes"); //importing the added js file for api routes
 
-
+var carRoutes = require("./car-routes"); 
 
 
 
@@ -135,6 +129,7 @@ var port = process.env.PORT || 8080;
 
 // Use API routes in the App
 app.use('/api', apiRoutes)
+app.use('/api/car', carRoutes)
 
 
 // Launch app to listen to specified port
@@ -142,21 +137,4 @@ app.listen(port, function () {
     console.log("Running RESTHub on port " + port);
  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// End Adding Mongoose and Body Parser
+// End Adding Mongoose

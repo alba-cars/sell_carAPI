@@ -20,18 +20,20 @@ exports.index = function (req, res) {
 
 //  Handle Create Sell Car Actions
 exports.new = function(req, res) {
-    var sellcar = new SellCar();
-    sellcar.make = req.body.make ? req.body.make : sellcar.make;
-    sellcar.model = req.body.model;
-    sellcar.trim = req.body.trim;
-    sellcar.year = req.body.year;
-    sellcar.odometer = req.body.odometer;
-    sellcar.price = req.body.price;
+    var sellcar = new SellCar({
+        Make: req.body.make ? req.body.make : sellcar.Make,
+        Model: req.body.model,
+        Trim: req.body.trim,
+        Year: req.body.year,
+        'Average Odometer': req.body.odometer,
+        'Dubizzle Price': req.body.price
+    });
 
     // save the car and check for errors
     sellcar.save(function (err) {
-        // if (err)
-        // res.json(err);
+        if (err)
+            return res.send(err);
+
         res.json({
             message: 'New Sell Car Created!',
             data: sellcar

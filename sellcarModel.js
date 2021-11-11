@@ -2,27 +2,27 @@ var mongoose = require('mongoose');
 
 // Setup Schema
 var sellcarSchema = mongoose.Schema({
-    make: {
+    Make: {
         type: String,
         required: true
     },
-    model: {
+    Model: {
         type: String,
         required: true
     },
-    trim: {
+    Trim: {
         type: String,
         required: true
     },
-    year: {
+    Year: {
         type: Number,
         required: true
     },
-    odometer: {
+    'Average Odometer': {
         type: Number,
         required: true
     },
-    price: {
+    'Dubizzle Price': {
         type: Number,
         required: true
     },
