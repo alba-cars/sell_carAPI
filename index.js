@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 // Path of the package
 var path = require('path');
 
+// Import CORS
+const cors = require('cors');
+
 // Sell Car Model
 var sellcarModel = require('./app/models/sellcarModel');
 
@@ -61,6 +64,10 @@ app.use(express.json());
 
 //static folder  
 app.use(express.static(path.resolve(__dirname,'public')));  
+
+
+// Using CORS on the app
+app.use(cors());
 
 
 //route for Home page
