@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import CarsList from './components/CarsList';
+import SearchCar from './components/SearchCar';
+// import CarsList from './components/CarsList';
+
 
 
 function App() {
   return (
     <div className="App">
-      <CarsList />
+      <SearchCar />
     </div>
   );
 }
