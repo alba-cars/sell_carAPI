@@ -144,6 +144,8 @@ function SearchCar() {
 
                 { getCar && <div className="alert alert-secondary mt-2" role="alert"><pre>{getCar}</pre></div>}
             </div>
+
+            {/* <div>{get_make}</div> */}
         </div>
     );
  }

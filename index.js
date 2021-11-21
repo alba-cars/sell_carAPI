@@ -44,6 +44,7 @@ mongoose.connect('mongodb://localhost/resthub', {
 
 var db = mongoose.connection;
 
+
 // Added check for DB connection
 if(!db)
     console.log("Error connecting db")
