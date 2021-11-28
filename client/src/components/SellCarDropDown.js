@@ -9,25 +9,62 @@ export default class SellDrop extends Component {
     this.state = {
       selectOptions : [],
       _id: "",
-      make: ''
+      make: '',
+      data: []
     }
   }
 
  async getOptions(){
     const res = await axios.get('http://localhost:8080/api/sellcar')
-    const data = res.data
+    const data = res.data.data
 
-    const options = data.data.map(d => ({
-      "value" : d._id,
-      "label" : d.Make
-    }))
+    let lookup = {};
+    let options = [];
+
+    for (let item, i = 0; item = data[i++];) {
+      let make = item.Make;
+
+      if (!(make in lookup)) {
+        lookup[make] = 1;
+        options.push({
+          "value" : item._id,
+          "label" : item.Make
+        });
+      }
+    }
+
+    // const options = data.map(d => ({
+    //   "value" : d._id,
+    //   "label" : d.Make
+    // }))
     
 
-    this.setState({selectOptions: options})
+    this.setState({selectOptions: options, data})
 
   }
 
   handleChange(e){
+    const filteredData = this.state.data.filter(value => {
+      return value.Make == e.label
+    });
+    console.log(filteredData);
+
+    let lookup = {};
+    let options = [];
+
+    for (let item, i = 0; item = filteredData[i++];) {
+      let model = item.Model;
+
+      if (!(model in lookup)) {
+        lookup[model] = 1;
+        options.push({
+          "value" : item._id,
+          "label" : item.Model
+        });
+      }
+    }
+    console.log(options);
+
    this.setState({_id:e.value, Make:e.label})
   }
 
@@ -36,7 +73,6 @@ export default class SellDrop extends Component {
   }
 
   render() {
-    console.log(this.state.selectOptions)
     return (
       <div>
         <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
