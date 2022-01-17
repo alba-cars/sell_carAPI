@@ -10,6 +10,7 @@ export default class SellDrop extends Component {
       selectOptions : [],
       _id: "",
       make: '',
+      mode: '',
       data: []
     }
   }
@@ -43,16 +44,16 @@ export default class SellDrop extends Component {
 
   }
 
-  handleChange(e){
-    const filteredData = this.state.data.filter(value => {
+  handleMakeChange(e){
+    const filteredMakeData = this.state.data.filter(value => {
       return value.Make == e.label
     });
-    console.log(filteredData);
+    // console.log(filteredData);
 
     let lookup = {};
     let options = [];
 
-    for (let item, i = 0; item = filteredData[i++];) {
+    for (let item, i = 0; item = filteredMakeData[i++];) {
       let model = item.Model;
 
       if (!(model in lookup)) {
@@ -68,6 +69,7 @@ export default class SellDrop extends Component {
    this.setState({_id:e.value, Make:e.label})
   }
 
+
   componentDidMount(){
       this.getOptions()
   }
@@ -75,8 +77,7 @@ export default class SellDrop extends Component {
   render() {
     return (
       <div>
-        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
-    <p>You have selected <strong>{this.state.Make}</strong> whose id is <strong>{this.state._id}</strong></p>
+        <Select options={this.state.selectOptions} onChange={this.handleMakeChange.bind(this)} />
       </div>
     )
   }
