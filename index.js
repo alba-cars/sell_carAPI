@@ -1,3 +1,4 @@
+require('dotenv').config()
 // Import express
 var express = require('express');
 
@@ -34,9 +35,10 @@ var uploads = multer({
     storage: storage
 });
 
+
 // Connect to Mongoose and set connection variable
 // Deprecated: mongoose.connect('mongodb://localhost/resthub');
-mongoose.connect('mongodb://127.0.0.1/resthub', {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true
 })
 .then(()=>console.log('connected to db'))  
@@ -122,16 +124,8 @@ function importExcelData2MongoDB(filePath){
 
 // Import Routes
 var apiRoutes = require("./app/routes/api-routes"); //importing the added js file for api routes
-
 var carRoutes = require("./app/routes/car-routes"); 
-
-
-
-
-
-// Setup server port
-var port = process.env.PORT || 8080;
-
+const users = require('./app/routes/users')
 // Send message for default URL
 // app.get('/', (req, res) => res.send('Hello World with Express'));
 
@@ -139,7 +133,12 @@ var port = process.env.PORT || 8080;
 app.use('/api', apiRoutes)
 app.use('/api/car', carRoutes)
 
+app.use('/api/users', users)
 
+
+
+// Setup server port
+var port = process.env.PORT || 8080;
 // Launch app to listen to specified port
 app.listen(port, function () { 
     console.log("Running RESTHub on port " + port);
