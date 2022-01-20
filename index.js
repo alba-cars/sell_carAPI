@@ -36,7 +36,7 @@ var uploads = multer({
 
 // Connect to Mongoose and set connection variable
 // Deprecated: mongoose.connect('mongodb://localhost/resthub');
-mongoose.connect('mongodb://127.0.0.1/resthub', {
+mongoose.connect('mongodb://localhost/resthub', {
     useNewUrlParser: true
 })
 .then(()=>console.log('connected to db'))  
