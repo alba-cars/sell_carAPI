@@ -17,6 +17,7 @@ export default class SellDrop extends Component {
       year: '',
       fromPrice: '',
       toPrice: '',
+      aveOdo: '',
       data: []
     }
   }
@@ -121,8 +122,23 @@ export default class SellDrop extends Component {
     const finalItem = this.state.data.find(value => {
       return value.Make == this.state.make && value.Model == this.state.model && value.Trim == this.state.trim && value.Year == e.label
     });
-    this.setState({year: e.label, fromPrice: finalItem['Average From'], toPrice: finalItem.To})
+
+    const AveOdo = this.state.data.find(value => {
+      return value.Make == this.state.make && value.Model == this.state.model && value.Trim == this.state.trim && value.Year == e.label
+    });
+
+
+    this.setState({year: e.label, fromPrice: finalItem['Average From'], toPrice: finalItem.To});
+
+    this.setState({year: e.label, aveOdo: AveOdo['Average Odometer']});
   }
+
+  // handleOdoChange(e){
+  //   const AveOdo = this.state.data.find(value => {
+  //     return value.Make == this.state.make && value.Model == this.state.model && value.Trim == this.state.trim && value.Year == e.label
+  //   });
+  //   this.setState({year: e.label, aveOdo: AveOdo['Average Odometer']})
+  // }
 
   componentDidMount(){
       this.getOptions()
@@ -135,6 +151,7 @@ export default class SellDrop extends Component {
         <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} />
         <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} />
         <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} />
+        <p>Average Odometer: {this.state.aveOdo} KM</p>
         <p>From: {this.state.fromPrice} - To: {this.state.toPrice}</p>
       </div>
     )
