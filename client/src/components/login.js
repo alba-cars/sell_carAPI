@@ -1,16 +1,25 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import AuthContext from '../context/AuthProvider'
 
 const Login = () =>  {
+    const { setAuth } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-  const handleLogin  = (e) => {
+  const handleLogin  = async (e) => {
       e.preventDefault()
-      const tmpLoginInfo = {
-        email,
-        password
+      try{
+        const tmpLoginInfo = {
+          email,
+          password
+        }
+        console.log(tmpLoginInfo)
+        setEmail('')
+        setPassword('')
+      }catch(err){
+        alert(err)
       }
-      console.log(tmpLoginInfo)
+      
   }
   
   return (

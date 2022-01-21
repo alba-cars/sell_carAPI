@@ -1,9 +1,10 @@
-import React, { Component, useRef, useEffect } from 'react'
+import React, { Component} from 'react'
 import Select from 'react-select'
 import axios from 'axios'
-import { Form, Card, Container } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
+import Nav from '../core/Nav'
 
-export default class SellDrop extends Component {
+export default class SellDrop extends Component { 
 
   constructor(props){
     super(props)
@@ -177,8 +178,11 @@ export default class SellDrop extends Component {
   render() {
     return (
       <>
-        <div className='container'>
-            <div className='row' style={{height:'150px'}}></div>
+        <div className='container-fluid'>
+        <Nav />
+            <div className='row' style={{height:'150px'}}>
+              
+            </div>
             <div className='row' >
                 <div className='col'></div>
                 
