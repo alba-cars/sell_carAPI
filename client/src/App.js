@@ -1,15 +1,17 @@
 import React from 'react';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import SellDrop from './components/SellCarDropDown';
-// import SearchCar from './components/SearchCar';
-// import CarsList from './components/CarsList';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import SellDrop from './components/SellCarDropDown';
+import HomeSellDrop from './components/home'
+import Login from './components/login';
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   return (
     <div className="App">
-      <SellDrop />
+        <Routes path='/'>
+          <Route index element={<HomeSellDrop />} />
+          <Route path="login" element={<Login />} />
+        </Routes>
     </div>
   );
 }
