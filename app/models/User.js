@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    roles: {
+        type: Array,
+        default: 'regular'
+    },
 
     status:{
         type: String,
