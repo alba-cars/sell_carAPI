@@ -2,7 +2,7 @@ let router = require('express').Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const jwt = require("jsonwebtoken");
-
+const cookie = require("cookie");
 
 
 router.get('/', async (req, res) => {
@@ -21,18 +21,16 @@ router.post('/login', async (req, res) =>  {
             const isMatch = await bcrypt.compare(req.body.password.trim().toLowerCase(), tmpUser.password)
             if(isMatch){
                 // res.status(200).json(tmpUser)
-                const token = jwt.sign(
-                    {
+                const token = jwt.sign({
                       user: tmpUser._id,
                     },
                     process.env.JWT_SECRET_KEY
                   )
 
-                  res.cookie("token", token, {
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: "none",
-                  }).send();
+                
+
+                    res.cookie("token", {id:tmpUser.id, token: token});
+                    res.json({message:'Login is Good'})
 
             }else{
                 res.status(200).json({message: "Password is incorrect"})
@@ -62,13 +60,12 @@ router.post('/create', async (req, res)  => {
 
 router.get("/loggedIn", (req, res) => {
     try {
-      const token = req.cookies.token;
-      console.log(req.cookies.token)
+      const token = req.cookies;
+    //   console.log(req.cookies.token)
       if (!token) return res.json(false);
-        
-      jwt.verify(token, process.env.JWT_SECRET_KEY);
+    //   jwt.verify(token, process.env.JWT_SECRET_KEY);
   
-      res.send(true);
+      res.send(req.cookies.token);
     } catch (err) {
       res.json(false);
     }
