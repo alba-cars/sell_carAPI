@@ -1,11 +1,13 @@
-import axios from 'axios';
-import {useState, useEffect, useContext} from 'react';
+import axios from 'axios'
+import {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthProvider'
 
+
 const Login = () =>  {
-    const { setAuth } = useContext(AuthContext);
+    const { auth, getLoggedIn } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+ 
 
   const handleLogin  = async (e) => {
       e.preventDefault()
@@ -20,18 +22,18 @@ const Login = () =>  {
                   headers: { 'Content-Type': 'application/json' }
               }).then(res => {
                 if(res.data){
+                  // console.log(res.data)
+                   
                   // window.location.href = "/"
-                  console.log(res.data)
-                   setAuth(res.data);
-                  window.location.href = "/"
+                  // setAuth({name: "dorbor"});
                 }
             }).catch((err, res) => {
               console(err + ' '+ res)
             })
 
-     
-
-        setEmail('')
+          console.log(auth)
+          await getLoggedIn();
+          setEmail('')
         setPassword('')
       }catch(err){
         alert(err)

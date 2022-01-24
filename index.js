@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cookieParser = require("cookie-parser");
 // Import express
 var express = require('express');
 
@@ -64,7 +65,16 @@ app.set('view engine','ejs');
 //     extended: true
 // }));
 app.use(express.json());
-
+app.use(cookieParser());
+app.use(
+    cors({
+      origin: [
+        "http://localhost:3000",
+        "http://localhost:8080",
+      ],
+      credentials: true,
+    })
+  );
 //static folder  
 app.use(express.static(path.resolve(__dirname,'public')));  
 
