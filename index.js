@@ -1,5 +1,6 @@
 require('dotenv').config()
 const cookieParser = require("cookie-parser");
+
 // Import express
 var express = require('express');
 
@@ -80,7 +81,7 @@ app.use(express.static(path.resolve(__dirname,'public')));
 
 
 // Using CORS on the app
-app.use(cors());
+// app.use(cors());
 
 
 //route for Home page

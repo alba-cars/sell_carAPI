@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthProvider'
 
 
 const Login = () =>  {
-    const { auth, getLoggedIn } = useContext(AuthContext);
+    const { auth, getLoggedIn,setAuth } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
  
@@ -17,22 +17,20 @@ const Login = () =>  {
           password
         }
 
-        await axios.post('http://localhost:8080/api/users/login',
+            await axios.post('http://localhost:8080/api/users/login',
                 tmpLoginInfo,{
                   headers: { 'Content-Type': 'application/json' }
               }).then(res => {
                 if(res.data){
-                  // console.log(res.data)
-                   
+                  setAuth(res.data);
                   // window.location.href = "/"
-                  // setAuth({name: "dorbor"});
                 }
             }).catch((err, res) => {
-              console(err + ' '+ res)
+              // console(err + ' '+ res)
             })
 
-          console.log(auth)
-          await getLoggedIn();
+          // console.log(auth)
+          // await getLoggedIn();
           setEmail('')
         setPassword('')
       }catch(err){
