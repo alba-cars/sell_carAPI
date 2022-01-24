@@ -1,6 +1,14 @@
 import React from 'react'
-
+import {useState, useEffect, useContext} from 'react';
+import AuthContext from '../../context/AuthProvider'
 function Nav() {
+
+const { auth, setAuth } = useContext(AuthContext)
+
+    useEffect( ()  => { 
+        console.log(auth)
+    }, [])
+
   return (
         <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-danger p-1">
