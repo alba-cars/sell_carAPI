@@ -1,8 +1,7 @@
 import {useState, useEffect} from 'react';
 import Nav from '../../core/Nav';
-
-
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const CreateUser = () => {
 
@@ -10,17 +9,37 @@ const CreateUser = () => {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [role, setRole] = useState([])
+    const letsGo = useNavigate();
 
-
-    const handleLogin  = (e) => {
+    const handleCreateUser = (e) => {
         e.preventDefault()
-        const tmpLoginInfo = {
-          name,
-          email,
-          password,
-          role
-        }
+        try{
+            const tmpLoginInfo = {
+                name,
+                email,
+                password,
+                role
+              }
+            axios.post('http://localhost:8080/api/users/create', tmpLoginInfo)
+          .then((res) => {
+            if(res.data){
+                // toast.success('User Created Successfully')
+                letsGo("/users")
+            }
+          })
+          .catch((error)=>{
+            console.log(error);
+          });
         console.log(tmpLoginInfo)
+        setName('')
+        setEmail('')
+        setPassword('')
+        setRole('')
+        }catch(err){
+
+        }
+        
+        
     }
 
 
@@ -39,7 +58,7 @@ const CreateUser = () => {
                     className="form-control form-control-lg"
                     placeholder="Please Enter Name"
                     onChange={e => setName(e.target.value)}
-                    required
+                    value={name}
                     autoFocus
                 />
                  <br />
@@ -48,7 +67,7 @@ const CreateUser = () => {
                     className="form-control form-control-lg"
                     placeholder="Email address"
                     onChange={e => setEmail(e.target.value)}
-                    required
+                    value={email}
                 />
                 <br />
                 <input
@@ -56,7 +75,8 @@ const CreateUser = () => {
                     className="form-control form-control-lg"
                     placeholder="Password"
                     onChange={e => setPassword(e.target.value)}
-                    required
+                    value={password}
+
                 />
                 <br />
                 <select  className="form-control form-control-lg" onChange={e => setRole(e.target.value)}>
@@ -65,7 +85,7 @@ const CreateUser = () => {
                     <option value='admin'>Admin User</option>
                 </select>
                 <br />
-                <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={handleLogin}>
+                <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={handleCreateUser}>
                     Create New User
                 </button>
                 <p className="mt-5 mb-3 text-muted">© 2017-2018</p>

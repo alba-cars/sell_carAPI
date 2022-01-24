@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useState, useEffect, useContext} from 'react';
 import AuthContext from '../context/AuthProvider'
 
@@ -13,7 +14,23 @@ const Login = () =>  {
           email,
           password
         }
-        console.log(tmpLoginInfo)
+
+        await axios.post('http://localhost:8080/api/users/login',
+                tmpLoginInfo,{
+                  headers: { 'Content-Type': 'application/json' }
+              }).then(res => {
+                if(res.data){
+                  // window.location.href = "/"
+                  console.log(res.data)
+                   setAuth(res.data);
+                  window.location.href = "/"
+                }
+            }).catch((err, res) => {
+              console(err + ' '+ res)
+            })
+
+     
+
         setEmail('')
         setPassword('')
       }catch(err){

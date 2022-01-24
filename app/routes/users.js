@@ -3,33 +3,45 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
 router.get('/', function(req, res) {
-    const user = User.find({})
-    res.json(user);
+    const user = User.find({}).exec()
+    .then(docs => {
+        res.status(200).json(docs)
+    }).catch(err => {
+        res.status(400).json({ error: err })
+    })  
 });
 
-router.post('/login', (req, res) => {
-    const hashPass =  bcrypt.hash(req.body.password, 12)
-    res.json({
-        email: req.body.email,
-        password: hashPass
-    });
+router.post('/login', async (req, res) =>  {
+    const tmpUser = await User.findOne({ email: req.body.email.trim().toLowerCase()})
+        if(tmpUser){
+            // console.log(tmpUser.password)
+            const isMatch = await bcrypt.compare(req.body.password.trim().toLowerCase(), tmpUser.password)
+            if(isMatch){
+                res.status(200).json(tmpUser)
+            }else{
+                res.status(200).json({message: "Password is incorrect"})
+            }
+
+        }
 });
 
-router.post('/create', (req, res)  => {
+router.post('/create', async (req, res)  => {
     const hashPass =   bcrypt.hashSync(req.body.password, 12)
-    const newUser = {
+    const tmpUser = {
         name: req.body.name,
         email: req.body.email,
+        role: req.body.role,
         password: hashPass
     }
-    User.save(newUser)
-
-    res.json({
-        name: req.body.name,
-        email: req.body.email,
-        password: hashPass
-    })
-
+    
+    const newUser = new User(tmpUser)
+    const user = await newUser.save()
+    if(!user){
+        res.status(400).json({messag: "Error occur"})
+    }else{
+        res.status(200).json(user)
+    }
+    
 })
 
 

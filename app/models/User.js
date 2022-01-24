@@ -17,8 +17,11 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     roles: {
-        type: Array,
+        type: String,
         default: 'regular'
+    },
+    token: {
+        type: String,
     },
 
     status:{
