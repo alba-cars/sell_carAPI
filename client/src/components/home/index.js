@@ -187,7 +187,7 @@ export default class SellDrop extends Component {
                 <div className='col'></div>
                 
                 <div className='col card card-danger' >
-                    <h3 className='card-header display-6'>What Do you Want?</h3>
+                    <h3 className='card-header display-6'>What Do you Want? </h3>
                     <div className='card-body'>
                 
                             <Form>
