@@ -1,12 +1,41 @@
 import React from 'react'
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react'
+import axios from 'axios'
 import AuthContext from '../../context/AuthProvider'
 function Nav() {
+    const [user, setUser] = useState([])
 
-const { auth, setAuth } = useContext(AuthContext)
+const { auth, setAuth } = useState(undefined)
 
-    useEffect( ()  => { 
-        console.log(auth)
+    const loginUser = async(id)  =>  {
+        try {
+        const res = await axios.get(
+            `http://localhost:8080/api/users/${id}`,
+            {
+            withCredentials: true,
+            }
+        )
+        if(res.data.length > 0){
+            setUser(res.data[0])
+            console.log(res.data[0])
+        }
+  
+        } catch (error) {
+        console.log(error)
+        }
+    }
+
+    useEffect( async ()  => { 
+        // console.log(auth)
+        const tmpUser = localStorage.getItem('logUser')
+        if(tmpUser){
+              loginUser(tmpUser)
+        }
+        if(!user){
+            console.log('user not found')
+        }else{
+            console.log('user is live')
+        }
     }, [])
 
   return (
@@ -35,15 +64,15 @@ const { auth, setAuth } = useContext(AuthContext)
 
                 
             </div>
+                <ul className="nav justify-content-end ">
+                        <h4 className="navbar-brand p-2" > Hi, {user.name}</h4>
+                </ul>
                 <form className="d-flex">
+                    
                     <button className="btn btn-warning" type="submit">LogOut</button>
                 </form>
 
-                {/* <ul className="nav justify-content-end">
-                    <li className="nav-item">
-                        <a className="nav-link active" href="#">Active</a>
-                    </li>
-                </ul> */}
+                
             </nav>
   </>
   );

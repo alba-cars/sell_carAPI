@@ -30,7 +30,7 @@ router.post('/login', async (req, res) =>  {
                 
 
                     res.cookie("token", {id:tmpUser.id, token: token});
-                    res.json({message:'Login is Good'})
+                    res.json(tmpUser)
 
             }else{
                 res.status(200).json({message: "Password is incorrect"})
@@ -58,17 +58,13 @@ router.post('/create', async (req, res)  => {
 })
 
 
-router.get("/loggedIn", (req, res) => {
-    try {
-      const token = req.cookies;
-    //   console.log(req.cookies.token)
-      if (!token) return res.json(false);
-    //   jwt.verify(token, process.env.JWT_SECRET_KEY);
-  
-      res.send(req.cookies.token);
-    } catch (err) {
-      res.json(false);
-    }
+router.get("/:id",  (req, res) => {
+    User.find({_id: req.params.id}).exec()
+    .then(docs => {
+        res.status(200).json(docs)
+    }).catch(err => {
+        res.status(400).json({ error: err })
+    })  
   });
 
 

@@ -22,8 +22,8 @@ const LoginDemo = () =>  {
                   headers: { 'Content-Type': 'application/json' }
               }).then(res => {
                 if(res.data){
-                  setAuth(res.data);
-                  // window.location.href = "/"
+                  localStorage.setItem('logUser',  res.data._id )
+                  window.location.href = "/"
                 }
             }).catch((err, res) => {
               // console(err + ' '+ res)
@@ -85,7 +85,7 @@ const LoginDemo = () =>  {
                   <label className="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
                   {/*end::Label*/}
                   {/*begin::Link*/}
-                  <a href className="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                  <a href='#' className="link-primary fs-6 fw-bolder">Forgot Password ?</a>
                   {/*end::Link*/}
                 </div>
                 {/*end::Wrapper*/}
