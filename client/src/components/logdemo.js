@@ -40,35 +40,11 @@ const LoginDemo = () =>  {
 //   }
   
   return (
-    <div>
-    {/*
-Author: Alba Corp
-Product Name: Digital Instant Valuation System 
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
-*/}
-    {/*begin::Head*/}
-    <title>Alba - DIVS | Digital Instant Valuation System</title>
-    <meta charSet="utf-8" />
-    <meta name="description" content="Digital Instant Valuation System" />
-    <meta name="keywords" content="Digital Instant Valuation System" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Alba - DIVS | Digital Instant Valuation System" />
-    <meta property="og:url" content="https://divs.albacars.app" />
-    <meta property="og:site_name" content="Alba DIVS" />
-    <link rel="canonical" href="#" />
-    <link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
-    {/*begin::Fonts*/}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
-    {/*end::Fonts*/}
-    {/*begin::Global Stylesheets Bundle(used by all pages)*/}
-    <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 
-    <div className="d-flex flex-column flex-root">
-      {/*begin::Authentication - Sign-in */}
-      <div className="d-flex flex-column flex-column-fluid bgi-position-y-top position-x-top bgi-no-repeat bgi-size-cover bgi-attachment-fixed" style={{backgroundImage: 'url(/assets/media/background/bg1.png'}}>
+
+    // <div className="d-flex flex-column flex-root">
+    //   {/*begin::Authentication - Sign-in */}
+      <div className="d-flex flex-column flex-column-fluid bgi-position-y-top position-x-top bgi-no-repeat bgi-size-cover bgi-attachment-fixed" style={{backgroundImage: 'url(/assets/media/background/bg1.png', height: "100vh"}}>
         {/*begin::Content*/}
         <div className="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
           {/*begin::Logo*/}
@@ -146,9 +122,8 @@ License: For each use you must have a valid license purchased only from above li
         </div>
         {/*end::Footer*/}
       </div>
-      {/*end::Authentication - Sign-in*/}
-    </div>
-  </div>
+    // </div>
+
   );
 }
 
