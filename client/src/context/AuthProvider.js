@@ -5,20 +5,29 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
 
-    async function getLoggedIn() {
-        // const loggedInRes = await axios.get("http://localhost:5000/auth/loggedIn");
-        const loggedInRes = await axios.get(
-          "http://localhost:8080/api/users/loggedIn"
-        );
-        setAuth(loggedInRes.data);
-      }
+    // async function loginUser(id) {
+    //   try {
+    //     const res = await axios.get(
+    //       `http://localhost:8080/api/users/${id}`,
+    //       {
+    //         withCredentials: true,
+    //       }
+    //     )
+    //     console.log(res.data)
+    //     setAuth(res.data)
+    //     return res
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
 
-      useEffect(() => {
-        getLoggedIn();
-      }, []);
+    useEffect(() => {
+      const logUserId = localStorage.getItem('logUser')
+      // loginUser(logUserId);
+    }, [])
 
     return (
-        <AuthContext.Provider value={{ auth, getLoggedIn }}>
+        <AuthContext.Provider value={{ auth,  setAuth }}>
             {children}
         </AuthContext.Provider>
     )
