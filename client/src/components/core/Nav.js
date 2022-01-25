@@ -1,7 +1,6 @@
 import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
-import AuthContext from '../../context/AuthProvider'
 function Nav() {
     const [user, setUser] = useState([])
 
@@ -9,20 +8,24 @@ const { auth, setAuth } = useState(undefined)
 
     const loginUser = async(id)  =>  {
         try {
-        const res = await axios.get(
-            `http://localhost:8080/api/users/${id}`,
-            {
-            withCredentials: true,
+            const res = await axios.get(
+                `http://localhost:8080/api/users/${id}`,
+                {
+                withCredentials: true,
+                }
+            )
+            if(res.data.length > 0){
+                setUser(res.data[0])
+                console.log(res.data[0])
             }
-        )
-        if(res.data.length > 0){
-            setUser(res.data[0])
-            console.log(res.data[0])
-        }
   
         } catch (error) {
         console.log(error)
         }
+    }
+    const logOut = () => {
+        localStorage.setItem('logUser',  '' )
+        window.location.href = "/login"
     }
 
     useEffect( async ()  => { 
@@ -31,8 +34,9 @@ const { auth, setAuth } = useState(undefined)
         if(tmpUser){
               loginUser(tmpUser)
         }
-        if(!user){
-            console.log('user not found')
+        console.log(user.name)
+        if(tmpUser === '' || !tmpUser){
+            window.location.href = "/login"
         }else{
             console.log('user is live')
         }
@@ -69,7 +73,7 @@ const { auth, setAuth } = useState(undefined)
                 </ul>
                 <form className="d-flex">
                     
-                    <button className="btn btn-warning" type="submit">LogOut</button>
+                    <button className="btn btn-warning" type="submit" onClick={logOut}>LogOut</button>
                 </form>
 
                 
