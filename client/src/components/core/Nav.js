@@ -1,35 +1,36 @@
 import React from 'react'
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect} from 'react'
 import axios from 'axios'
 function Nav() {
     const [user, setUser] = useState([])
 
 const { auth, setAuth } = useState(undefined)
 
-    const loginUser = async(id)  =>  {
-        try {
-            const res = await axios.get(
-                `http://localhost:8080/api/users/${id}`,
-                {
-                withCredentials: true,
-                }
-            )
-            if(res.data.length > 0){
-                setUser(res.data[0])
-                console.log(res.data[0])
-            }
-  
-        } catch (error) {
-        console.log(error)
-        }
-    }
+    
     const logOut = () => {
         localStorage.setItem('logUser',  '' )
         window.location.href = "/login"
     }
 
     useEffect( async ()  => { 
-        // console.log(auth)
+        const loginUser = async(id)  =>  {
+            try {
+                const res = await axios.get(
+                    `http://localhost:8080/api/users/${id}`,
+                    {
+                    withCredentials: true,
+                    }
+                )
+                if(res.data.length > 0){
+                    setUser(res.data[0])
+                    console.log(res.data[0])
+                }
+      
+            } catch (error) {
+            console.log(error)
+            }
+        }
+
         const tmpUser = localStorage.getItem('logUser')
         if(tmpUser){
               loginUser(tmpUser)

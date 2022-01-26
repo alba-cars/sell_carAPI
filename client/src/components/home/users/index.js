@@ -1,15 +1,12 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios';
-import Nav from '../../core/Nav';
-import { Link } from 'react-router-dom';
-
-;
+import Nav from '../../core/Nav'
 
 
 function Users() {
 
     const [users, setUsers] = useState([])
-
+ 
     useEffect( ()  => { 
         async function fetchData() {
         const res = await axios.get('http://localhost:8080/api/users')

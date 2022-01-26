@@ -1,10 +1,9 @@
 import axios from 'axios'
-import React, {useState, useEffect, useContext} from 'react'
-import AuthContext from '../context/AuthProvider'
+import React, {useState} from 'react'
+
 
 
 const LoginDemo = () =>  {
-    const { auth, getLoggedIn,setAuth } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
  
@@ -48,7 +47,7 @@ const LoginDemo = () =>  {
         {/*begin::Content*/}
         <div className="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
           {/*begin::Logo*/}
-          <a href="#" className="mb-12">
+          <a href="/" className="mb-12">
             <img alt="Logo" src="/assets/media/logos/logo-demo7.svg" className="h-100px" />
           </a>
           {/*end::Logo*/}
