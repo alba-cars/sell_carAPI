@@ -22,6 +22,8 @@ export default class SellDrop extends Component {
       year: '',
       fromPrice: '',
       toPrice: '',
+      newFrom: '',
+      newTo: '',
       data: []
     }
   }
@@ -148,7 +150,7 @@ export default class SellDrop extends Component {
         let newOd = parseInt(this.state.odmeter)
 
         if(newOd < 25000){
-
+          this.setState({newFrom: (finalFrom/100)*30 + finalFrom, newTo: (finalto/100)*30 + finalto})
             finalFrom =  (finalFrom/100)*30 + finalFrom
             finalto =  (finalto/100)*30 + finalto
             console.log({
@@ -160,6 +162,7 @@ export default class SellDrop extends Component {
             finalFrom =  finalFrom - (finalFrom/100)*30 
             finalto =  finalto - (finalto/100)*30
 
+            this.setState({newFrom: finalFrom - (finalFrom/100)*30, newTo: finalto - (finalto/100)*30})
             console.log({
                 form:finalFrom,
                 to: finalto
@@ -203,10 +206,11 @@ export default class SellDrop extends Component {
                                 className='form-control form-control-lg' 
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
-                                <p>From: {this.state.fromPrice} - To: {this.state.toPrice}</p> 
+                                {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {this.state.fromPrice} - To: {this.state.toPrice}</p> : ''} 
+                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: {this.state.newFrom} - To: {this.state.newTo}</h4> : ''} 
 
                                 <br />
-                                <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Check Out</button>
+                                <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
                             </Form>
                     </div>               
                 </div>

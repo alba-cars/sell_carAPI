@@ -1,13 +1,8 @@
-import { createContext, useState, useEffect } from "react"
-import axios from 'axios'
+import { createContext, useState } from "react"
 const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
-
-    useEffect(() => {
-      const logUserId = localStorage.getItem('logUser')
-    }, [])
 
     return (
         <AuthContext.Provider value={{ auth,  setAuth }}>
