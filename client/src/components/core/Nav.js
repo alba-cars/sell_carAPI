@@ -4,16 +4,14 @@ import axios from 'axios'
 function Nav() {
     const [user, setUser] = useState([])
 
-const { auth, setAuth } = useState(undefined)
-
     
     const logOut = () => {
         localStorage.setItem('logUser',  '' )
         window.location.href = "/login"
     }
 
-    useEffect( async ()  => { 
-        const loginUser = async(id)  =>  {
+    useEffect( ()=> { 
+        const loginUser = async (id)  =>  {
             try {
                 const res = await axios.get(
                     `http://localhost:8080/api/users/${id}`,
@@ -41,7 +39,7 @@ const { auth, setAuth } = useState(undefined)
         }else{
             console.log('user is live')
         }
-    }, [])
+    }, [user.name])
 
   return (
         <>
