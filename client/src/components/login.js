@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 
+
 const LoginDemo = () =>  {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -13,7 +14,7 @@ const LoginDemo = () =>  {
           password
         }
 
-            await axios.post('http://localhost:8080/api/users/login',
+            await axios.post(`${process.env.BASED_API_URL}/api/users/login`,
                 tmpLoginInfo,{
                   headers: { 'Content-Type': 'application/json' }
               }).then(res => {
@@ -51,7 +52,7 @@ const LoginDemo = () =>  {
           {/*begin::Wrapper*/}
           <div className="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
             {/*begin::Form*/}
-            <form className="form w-100" noValidate="novalidate" id="kt_sign_in_form" action="#" onSubmit={handleLogin}>
+            <form className="form w-100" noValidate="novalidate" id="kt_sign_in_form" action="#" onSubmit={handleLogin}> 
               {/*begin::Heading*/}
               <div className="text-center mb-10">
                 {/*begin::Title*/}
@@ -66,7 +67,7 @@ const LoginDemo = () =>  {
               {/*begin::Input group*/}
               <div className="fv-row mb-10">
                 {/*begin::Label*/}
-                <label className="form-label fs-6 fw-bolder text-dark">Email</label>
+                <label className="form-label fs-6 fw-bolder text-dark">Email </label>
                 {/*end::Label*/}
                 {/*begin::Input*/}
                 <input className="form-control form-control-lg form-control-solid" type="text" name="email" autoComplete="off" onChange={e => setEmail(e.target.value)}/>
@@ -78,7 +79,7 @@ const LoginDemo = () =>  {
                 {/*begin::Wrapper*/}
                 <div className="d-flex flex-stack mb-2">
                   {/*begin::Label*/}
-                  <label className="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+                  <label className="form-label fw-bolder text-dark fs-6 mb-0">Password </label>
                   {/*end::Label*/}
                   {/*begin::Link*/}
                   <a href='/login' className="link-primary fs-6 fw-bolder">Forgot Password ?</a>

@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Cars () {
+const Cars = () => {
+
+  const addCar = () => {
+    
+  }
     return (
         <div>
           <div className="d-flex flex-column flex-root">
@@ -20,7 +24,7 @@ function Cars () {
                       {/*begin::Breadcrumb*/}
                       <ul className="breadcrumb fw-bold fs-base my-1">
                         <li className="breadcrumb-item text-muted">
-                          <a href="#" className="text-muted">Dashboard</a>
+                          <a href="/" className="text-muted">Dashboard</a>
                         </li>
                       </ul>
                       {/*end::Breadcrumb*/}
@@ -223,16 +227,16 @@ function Cars () {
                     {/*begin::Copyright*/}
                     <div className="text-dark order-2 order-md-1">
                       <span className="text-gray-400 fw-bold me-1">Created by</span>
-                      <a href="https://albacars.app" target="_blank" className="text-muted text-hover-primary fw-bold me-2 fs-6">Alba DIVS</a>
+                      <a href="https://albacars.app" className="text-muted text-hover-primary fw-bold me-2 fs-6">Alba DIVS</a>
                     </div>
                     {/*end::Copyright*/}
                     {/*begin::Menu*/}
                     <ul className="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                       <li className="menu-item">
-                        <a href="https://albacars.app" target="_blank" className="menu-link px-2">About</a>
+                        <a href="https://albacars.app" className="menu-link px-2">About</a>
                       </li>
                       <li className="menu-item">
-                        <a href="https://albacars.app" target="_blank" className="menu-link px-2">Support</a>
+                        <a href="https://albacars.app" className="menu-link px-2">Support</a>
                       </li>
                     </ul>
                     {/*end::Menu*/}
@@ -803,7 +807,7 @@ function Cars () {
             </div>
             {/*end::Modal dialog*/}
           </div>
-          {/*end::Modal - Download Report*/}
+
           {/*begin::Modal - Add Car*/}
           <div className="modal fade" id="kt_modal_create_car" tabIndex={-1} aria-hidden="true">
             {/*begin::Modal dialog*/}
@@ -1506,7 +1510,7 @@ function Cars () {
             </div>
             {/*end::Modal dialog*/}
           </div>
-          {/*end::Modal - Add Car*/}
+
           {/*begin::Modal - New Car*/}
           <div className="modal fade" id="kt_modal_new_car" tabIndex={-1} aria-hidden="true">
             {/*begin::Modal dialog*/}
@@ -1699,7 +1703,7 @@ function Cars () {
             </div>
             {/*end::Modal dialog*/}
           </div>
-          {/*end::Modal - New Car*/}
+         
           {/*begin::Modal - New Car*/}
           <div className="modal fade" id="kt_modal_new_car_value" tabIndex={-1} aria-hidden="true">
             {/*begin::Modal dialog*/}

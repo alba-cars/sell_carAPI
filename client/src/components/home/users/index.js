@@ -10,12 +10,9 @@ function Users() {
     useEffect( ()  => { 
         async function fetchData() {
         const res = await axios.get('http://localhost:8080/api/users')
-        // await axios.get('http://localhost:8080/api/users')
-        //     .then( res => {
-                if(res.data){
-                    setUsers(res.data)
-                }
-            // })
+            if(res.data){
+                setUsers(res.data)
+            }
          }
         fetchData()
         
