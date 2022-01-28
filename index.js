@@ -59,20 +59,20 @@ else
 var app = express(); 
 
 //set the template engine  
-app.set('view engine','ejs'); 
+app.set('view engine','ejs')
 
 // Configure bodyparser to handle post requests
 // app.use(express.urlencoded({
 //     extended: true
 // }));
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json())
+app.use(cookieParser())
 app.use(
     cors({
       origin: [
         "http://localhost:3000",
         "http://localhost:8080",
-        
+        "http://3.129.89.65:8080"
       ],
       credentials: true,
       optionsSuccessStatus: 200 
