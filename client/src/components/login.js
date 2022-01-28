@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, {useState} from 'react'
-import { server } from './helper'
+
 
 const LoginDemo = () =>  {
     const [email, setEmail] = useState('')
@@ -14,7 +14,7 @@ const LoginDemo = () =>  {
           password
         }
 
-            await axios.post(`:8080/api/users/login`,
+            await axios.post(`${process.env.BASED_API_URL}/api/users/login`,
                 tmpLoginInfo,{
                   headers: { 'Content-Type': 'application/json' }
               }).then(res => {
