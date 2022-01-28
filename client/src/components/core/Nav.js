@@ -1,7 +1,8 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-function Nav() {
+
+const Nav = () => {
     const [user, setUser] = useState([])
 
     
@@ -33,7 +34,6 @@ function Nav() {
         if(tmpUser){
               loginUser(tmpUser)
         }
-        console.log(user.name)
         if(tmpUser === '' || !tmpUser){
             window.location.href = "/login"
         }else{
