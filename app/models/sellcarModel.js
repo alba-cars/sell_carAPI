@@ -14,9 +14,12 @@ var sellcarSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Year: {
+    spec: {
         type: String,
         required: true
+    },
+    Year: {
+        type: String,
     },
     'Average Odometer': {
         type: Number,

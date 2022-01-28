@@ -21,7 +21,7 @@ function Nav() {
                 )
                 if(res.data.length > 0){
                     setUser(res.data[0])
-                    console.log(res.data[0])
+                    // console.log(res.data[0])
                 }
       
             } catch (error) {
@@ -63,6 +63,14 @@ function Nav() {
                         <a className="dropdown-item" href="/users/create">Create User</a>
                     </div>
                 </li>
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="/users" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false"> Cars </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a className="dropdown-item" href="/cars">All Cars</a>
+                        <a className="dropdown-item" href="/cars/create">Create Cars</a>
+                    </div>
+                </li>
+
                 </ul>
 
                 

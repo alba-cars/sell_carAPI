@@ -1,13 +1,10 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 
-
-
 const LoginDemo = () =>  {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
  
-
   const handleLogin  = async (e) => {
       e.preventDefault()
       try{
@@ -84,15 +81,13 @@ const LoginDemo = () =>  {
                   <label className="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
                   {/*end::Label*/}
                   {/*begin::Link*/}
-                  <a href='#' className="link-primary fs-6 fw-bolder">Forgot Password ?</a>
-                  {/*end::Link*/}
+                  <a href='/login' className="link-primary fs-6 fw-bolder">Forgot Password ?</a>
                 </div>
                 {/*end::Wrapper*/}
                 {/*begin::Input*/}
                 <input className="form-control form-control-lg form-control-solid" type="password" name="password" autoComplete="off" onChange={e => setPassword(e.target.value)} />
                 {/*end::Input*/}
               </div>
-              {/*end::Input group*/}
               {/*begin::Actions*/}
               <div className="text-center">
                 {/*begin::Submit button*/}

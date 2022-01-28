@@ -19,6 +19,7 @@ export default class SellDrop extends Component {
       make: '',
       model: '',
       trim: '',
+      spec: '',
       year: '',
       fromPrice: '',
       toPrice: '',
@@ -131,16 +132,7 @@ export default class SellDrop extends Component {
     this.setState({year: e.label, fromPrice: finalItem['Average From'], toPrice: finalItem.To})
   }
 
-   setOdmeter = (e) =>  {
-    this.setState({odmeter: e.target.value })
-
-    // console.log('fromPrice',this.state.fromPrice)
-    // console.log('toPrice',this.state.toPrice)
-
-    // console.log('odmeter',this.state.odmeter)
-
-
-    }
+   setOdmeter = (e) =>  {this.setState({odmeter: e.target.value })}
 
     clickMe = (e) => {
         e.preventDefault()
@@ -149,30 +141,33 @@ export default class SellDrop extends Component {
         let finalto = parseInt(this.state.toPrice)
         let newOd = parseInt(this.state.odmeter)
 
-        if(newOd < 25000){
-          this.setState({newFrom: (finalFrom/100)*30 + finalFrom, newTo: (finalto/100)*30 + finalto})
-            finalFrom =  (finalFrom/100)*30 + finalFrom
-            finalto =  (finalto/100)*30 + finalto
+        if(newOd <= 25000){ // price is plus 15%
+          this.setState({newFrom: (finalFrom/100)*15 + finalFrom, newTo: (finalto/100)*15 + finalto})
+            finalFrom =  (finalFrom/100)*15 + finalFrom
+            finalto =  (finalto/100)*15 + finalto
             console.log({
                 form:finalFrom,
                 to: finalto
             })
             
-        }else if(newOd > 80000){
-            finalFrom =  finalFrom - (finalFrom/100)*30 
-            finalto =  finalto - (finalto/100)*30
+        }else if(newOd >= 25000 && newOd <= 80000){  // price is plus 0%
+            this.setState({newFrom: finalFrom, newTo: finalto})
+        }else if(newOd >= 80000 && newOd <= 120000){ // price is manus 30%
+          finalFrom =  finalFrom - (finalFrom/100)*30 
+          finalto =  finalto - (finalto/100)*30
 
-            this.setState({newFrom: finalFrom - (finalFrom/100)*30, newTo: finalto - (finalto/100)*30})
-            console.log({
-                form:finalFrom,
-                to: finalto
-            })
-        }else{
-            console.log(this.state.odmeter)
-            console.log({
-                form:finalFrom,
-                to: finalto
-            })
+          this.setState({newFrom: finalFrom - (finalFrom/100)*30, newTo: finalto - (finalto/100)*30})
+        }else if(newOd >= 120000 && newOd <= 200000){
+          finalFrom =  finalFrom - (finalFrom/100)*45 
+          finalto =  finalto - (finalto/100)*45
+
+          this.setState({newFrom: finalFrom - (finalFrom/100)*45, newTo: finalto - (finalto/100)*45})
+
+    }else{
+    finalFrom =  0
+    finalto =  0
+
+    this.setState({newFrom: 0, newTo: 0})
         }
     }
 
@@ -200,6 +195,11 @@ export default class SellDrop extends Component {
                                 <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} />
                                 <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} />
                                 <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} />
+                                <select className='form-control form-control-lg'>
+                                  <option value={''}>Select Type</option>
+                                  <option value={'gcc'}>GCC</option>
+                                  <option value={'american'}>American</option>
+                                </select>
                                 <input 
                                 type='number' 
                                 placeholder='Enter od meter' 
@@ -208,7 +208,7 @@ export default class SellDrop extends Component {
                                 onChange={this.setOdmeter}/>
                                 {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {this.state.fromPrice} - To: {this.state.toPrice}</p> : ''} 
                                 {this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: {this.state.newFrom} - To: {this.state.newTo}</h4> : ''} 
-
+                                {this.state.odmeter > 300000 ? <h4 className='text-center display-5'> Please contact Albacars via:<br /> albacars@albacars.ae</h4> : ''} 
                                 <br />
                                 <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
                             </Form>
