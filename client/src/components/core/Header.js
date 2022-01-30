@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import { server } from './helper'
 
 const Header = ({page}) => {
 
@@ -16,7 +17,7 @@ const Header = ({page}) => {
         const loginUser = async (id)  =>  {
             try {
                 const res = await axios.get(
-                    `http://localhost:8080/api/users/${id}`,
+                    `${server}/api/users/${id}`,
                     {
                     withCredentials: true,
                     }

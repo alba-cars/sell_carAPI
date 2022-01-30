@@ -1,13 +1,10 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import { server } from './helper'
-import { useNavigate } from 'react-router-dom'
-
 
 const LoginDemo = () =>  {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate();
  
   const handleLogin  = async (e) => {
       e.preventDefault()
@@ -22,7 +19,7 @@ const LoginDemo = () =>  {
               }).then(res => {
                 if(res.data){
                   localStorage.setItem('logUser',  res.data._id )
-                  navigate('/')
+                  window.location.href = "/"
                 }
             }).catch((err, res) => {
               // console(err + ' '+ res)

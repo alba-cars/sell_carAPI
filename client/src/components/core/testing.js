@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios';
 import Nav from '../../core/Nav'
-
+import { server } from './helper'
 
 function Users() {
 
@@ -9,7 +9,7 @@ function Users() {
  
     useEffect( ()  => { 
         async function fetchData() {
-        const res = await axios.get('http://localhost:8080/api/users')
+        const res = await axios.get(`${server}/api/users`)
             if(res.data){
                 setUsers(res.data)
             }
