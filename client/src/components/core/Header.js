@@ -50,7 +50,7 @@ const Header = ({page}) => {
                     {/*begin::Page title*/}
                     <div className="page-title d-flex flex-column align-items-start justify-content-center flex-wrap mt-n5 mt-lg-0 me-lg-2 pb-2 pb-lg-0" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
                       {/*begin::Heading*/}
-                      <h1 className="text-dark fw-bolder my-0 fs-2">Digital Instant Valuation System | {page}</h1>
+                      <h1 className="text-dark fw-bolder my-0 fs-2"> DIV | {page}</h1>
                       {/*end::Heading*/}
                       {/*begin::Breadcrumb*/}
                       <ul className="breadcrumb fw-bold fs-base my-1">
@@ -75,7 +75,7 @@ const Header = ({page}) => {
                             </svg>
                           </span>
                           {/*end::Svg Icon*/}
-                          <span className="d-none d-md-inline">Add Car</span>
+                          <span className="d-none d-md-inline">Add Valuation</span>
                         </a> 
                             &nbsp; <span className="btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6">|</span> &nbsp;
                         <a href='/users'  className='btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6'><span className="d-none d-md-inline">Users</span></a>
