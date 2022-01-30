@@ -33,10 +33,11 @@ router.post('/login', async (req, res) =>  {
                     res.json(tmpUser)
 
             }else{
-                res.status(200).json({message: "Password is incorrect"})
+                res.status(400).json({message: "Email or Password is incorrect"})
             }
 
         }
+        res.status(400).json({message: "Email or Password is incorrect"})
 });
 
 router.post('/create', async (req, res)  => {

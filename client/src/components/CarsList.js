@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import { server } from './helper'
 
 class CarsList extends Component {
 
@@ -12,7 +13,7 @@ class CarsList extends Component {
      }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/api/sellcar')
+        axios.get(`${server}/api/sellcar`)
         .then(response => {
             this.setState({
                 sellcars: response.data.data

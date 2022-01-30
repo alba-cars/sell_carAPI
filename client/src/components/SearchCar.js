@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
+import { server } from './helper'
 
 function SearchCar() { 
-    const baseURL = "http://localhost:8080/api/sellcar";
-    const filterURL = "http://localhost:8080/api/car?make&model=&trim=&year=";
+    const baseURL = `${server}/api/sellcar`;
+    const filterURL = `${server}/api/car?make&model=&trim=&year=`;
 
     const get_id = useRef(null);
     const get_make = useRef(null);

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Nav from '../../core/Nav';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { server } from './helper'
 
 const CreateUser = () => {
 
@@ -20,7 +21,7 @@ const CreateUser = () => {
                 password,
                 role
               }
-            axios.post('http://localhost:8080/api/users/create', tmpLoginInfo)
+            axios.post(`${server}/api/users/create`, tmpLoginInfo)
           .then((res) => {
             if(res.data){
                 // toast.success('User Created Successfully')

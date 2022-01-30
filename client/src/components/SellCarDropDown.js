@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
+import { server } from './helper'
 
 export default class SellDrop extends Component {
 
@@ -23,7 +24,7 @@ export default class SellDrop extends Component {
   }
 
  async getOptions(){
-    const res = await axios.get('http://localhost:8080/api/sellcar')
+    const res = await axios.get(`${server}/api/sellcar`)
     const data = res.data.data
     console.log(data)
 
