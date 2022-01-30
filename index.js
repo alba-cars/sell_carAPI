@@ -59,45 +59,41 @@ else
 var app = express(); 
 
 //set the template engine  
-app.set('view engine','ejs')
+// app.set('view engine','ejs')
 
 // Configure bodyparser to handle post requests
 // app.use(express.urlencoded({
 //     extended: true
 // }));
 app.use(express.json())
-app.use(cookieParser())
+// app.use(cookieParser())
 app.use(
     cors({
       origin: [
-        "http://localhost:3000",
-        "http://localhost:8080",
-        "http://3.129.89.65:8080"
+        "https://divs.albacars.app",
+        "http://127.0.0.1:8080",
       ],
       credentials: true,
       optionsSuccessStatus: 200 
     })
   );
-//static folder  
-app.use(express.static(path.resolve(__dirname,'public')));  
-
 
 // Using CORS on the app
 // app.use(cors());
-app.use(function(req, res, next) {
-    res.header('Content-Type', 'application/json;charset=UTF-8')
-    res.header('Access-Control-Allow-Credentials', true)
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
-    next()
-  })
+// app.use(function(req, res, next) {
+//     res.header('Content-Type', 'application/json;charset=UTF-8')
+//     res.header('Access-Control-Allow-Credentials', true)
+//     res.header(
+//       'Access-Control-Allow-Headers',
+//       'Origin, X-Requested-With, Content-Type, Accept'
+//     )
+//     next()
+//   })
 
 //route for Home page
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+// });
 
 // Upload excel file and import to mongodb
 app.post('/uploadfile', uploads.single("uploadfile"), (req, res) =>{
@@ -156,7 +152,10 @@ app.use('/api/car', carRoutes)
 
 app.use('/api/users', users)
 
-
+//static folder  
+const staticServe = express.static(path.join(__dirname, './client/build'));
+app.use('/', staticServe);  
+app.use('*', staticServe);  
 
 // Setup server port
 var port = process.env.PORT || 8080;
