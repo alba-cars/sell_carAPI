@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios';
 import Nav from '../../core/Nav'
-import { server } from './helper'
+import { server } from '../helper'
 
 function Users() {
 
