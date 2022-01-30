@@ -143,14 +143,15 @@ function importExcelData2MongoDB(filePath){
 var apiRoutes = require("./app/routes/api-routes"); //importing the added js file for api routes
 var carRoutes = require("./app/routes/car-routes"); 
 const users = require('./app/routes/users')
+const valuations = require('./app/routes/valuations')
 // Send message for default URL
 // app.get('/', (req, res) => res.send('Hello World with Express'));
 
 // Use API routes in the App
 app.use('/api', apiRoutes)
 app.use('/api/car', carRoutes)
-
 app.use('/api/users', users)
+app.use('/api/valuations', valuations)
 
 //static folder  
 const staticServe = express.static(path.join(__dirname, './client/build'));

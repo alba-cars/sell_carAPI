@@ -1,6 +1,7 @@
 let router = require('express').Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const Valuation = require('../models/Valuation')
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie");
 
@@ -88,6 +89,24 @@ User.findByIdAndUpdate(req.params.id, {
     });
 });
 })
+router.delete("/:id",  async(req, res) => {
+    const user =  await User.find( {_id:req.params.id}).exec()
+    if (!user) {
+        return res.status(400).json({ success: false, error: 'User not found '})
+    }
+    const val =await Valuation.find({"userId":req.params.id}).exec()
+    if(val){
+        return res.status(400).json({ success: false, error: 'Valuation exists. Cannot delete the user'})
+    }
+    User.findByIdAndRemove(req.params.id)
+    .then(user => {
+        res.send({message: "Valuation deleted successfully!"});
+    }).catch(err => {
+        return res.status(500).send({
+            message: "Could not delete User with id " + req.params.id
+        });
+    });
+  });
 
   
 
