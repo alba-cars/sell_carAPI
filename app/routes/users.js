@@ -32,9 +32,11 @@ router.post('/login', async (req, res) =>  {
 
                     res.cookie("token", {id:tmpUser.id, token: token});
                     res.json(tmpUser)
+                    return;
 
             }else{
                 res.status(400).json({message: "Email or Password is incorrect"})
+                return;
             }
 
         }
