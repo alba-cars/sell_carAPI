@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import { server } from './helper'
+import { server } from '../helper'
 
 const Nav = () => {
     const [user, setUser] = useState([])

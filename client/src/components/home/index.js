@@ -3,7 +3,7 @@ import Select from 'react-select'
 import axios from 'axios'
 import { Form } from 'react-bootstrap'
 import Nav from '../core/Nav'
-import { server } from './helper'
+import { server } from '../helper'
 
 
 export default class SellDrop extends Component { 

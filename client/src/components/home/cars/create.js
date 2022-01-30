@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Nav from '../../core/Nav';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { server } from './helper'
+import { server } from '../../helper'
 
 const CreateUser = () => {
 
