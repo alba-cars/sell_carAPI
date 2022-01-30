@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap'
 import Nav from '../core/Nav'
 import Header from '../core/Header';
 import Footer from '../core/Footer';
-import { server } from '../helper'
+import { server, formatValue } from '../helper'
 
 
 export default class SellDrop extends Component { 
@@ -200,27 +200,29 @@ export default class SellDrop extends Component {
                 <div className='col'></div>
                 
                 <div className='col card card-danger' >
-                    <h3 className='card-header display-6'>What Do you Want? </h3>
+                    <h3 className='card-header display-6'> Fill the Options Below </h3>
                     <div className='card-body'>
                 
                             <Form>
-                                <Select options={this.state.selectMakeOptions} onChange={this.handleMakeChange.bind(this)} />
-                                <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} />
-                                <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} />
-                                <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} />
-                                <select className='form-control form-control-lg'>
+                                <Select options={this.state.selectMakeOptions} onChange={this.handleMakeChange.bind(this)} /> <br />
+                                <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} /><br />
+                                <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} /><br />
+                                <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} /><br />
+                                <select className='form-control form-control-lg'><br />
                                   <option value={''}>Select Type</option>
                                   <option value={'gcc'}>GCC</option>
                                   <option value={'american'}>American</option>
-                                </select>
+                                  <option value={'american'}>Europian</option>
+                                  <option value={'american'}>Japanese</option>
+                                </select><br />
                                 <input 
                                 type='number' 
                                 placeholder='Enter od meter' 
                                 className='form-control form-control-lg' 
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
-                                {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {this.state.fromPrice} - To: {this.state.toPrice}</p> : ''} 
-                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: {this.state.newFrom} - To: {this.state.newTo}</h4> : ''} 
+                                {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {formatValue(this.state.fromPrice)} - To: {formatValue(this.state.toPrice)}</p> : ''} 
+                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: { formatValue(this.state.newFrom)} - To: {formatValue(this.state.newTo)}</h4> : ''} 
                                 {this.state.odmeter > 300000 ? <h4 className='text-center display-5'> Please contact Albacars via:<br /> albacars@albacars.ae</h4> : ''} 
                                 <br />
                                 <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
@@ -1556,13 +1558,13 @@ export default class SellDrop extends Component {
                       {/*begin::Input wrapper*/}
                       <div className="position-relative">
                         {/*begin::Input*/}
-                        <input type="text" className="form-control form-control-solid" placeholder="Enter customer email" name="customer_email" defaultValue="john@doe.com" />
+                        <input type="email" className="form-control form-control-solid" placeholder="Enter customer email" name="customer_email" defaultValue="john@doe.com" />
                         {/*end::Input*/}
                         {/*begin::Card logos*/}
                         <div className="position-absolute translate-middle-y top-50 end-0 me-5">
-                          <img src="assets/media/svg/card-logos/visa.svg" alt="" className="h-25px" />
+                          {/* <img src="assets/media/svg/card-logos/visa.svg" alt="" className="h-25px" />
                           <img src="assets/media/svg/card-logos/mastercard.svg" alt="" className="h-25px" />
-                          <img src="assets/media/svg/card-logos/american-express.svg" alt="" className="h-25px" />
+                          <img src="assets/media/svg/card-logos/american-express.svg" alt="" className="h-25px" /> */}
                         </div>
                         {/*end::Card logos*/}
                       </div>

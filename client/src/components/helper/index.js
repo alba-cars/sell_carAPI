@@ -12,3 +12,7 @@ function getURL(environment){
 }}
 // Server URL depending on environment
 export const server=getURL(environment)
+
+export const formatValue = (n) => {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
