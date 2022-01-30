@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { server } from './helper'
 
 
-const LoginDemo = () =>  {
+const LoginDemo = ({history}) =>  {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
  
@@ -20,7 +20,7 @@ const LoginDemo = () =>  {
               }).then(res => {
                 if(res.data){
                   localStorage.setItem('logUser',  res.data._id )
-                  window.location.href = "/"
+                  history.push("/");
                 }
             }).catch((err, res) => {
               // console(err + ' '+ res)
