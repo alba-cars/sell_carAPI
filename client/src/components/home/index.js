@@ -136,12 +136,13 @@ export default class SellDrop extends Component {
   }
 
    setOdmeter = (e) =>  {this.setState({odmeter: e.target.value })}
+   setSpec = (e) =>  {this.setState({spec: e.target.value })}
 
     clickMe = (e) => {
         e.preventDefault()
         console.log("first od",this.state.odmeter)
-        let finalFrom =  parseInt(this.state.fromPrice)
-        let finalto = parseInt(this.state.toPrice)
+        let finalFrom =  parseInt(this.state.fromPrice )
+        let finalto = parseInt(this.state.toPrice )
         let newOd = parseInt(this.state.odmeter)
 
         if(newOd <= 25000){ // price is plus 15%
@@ -150,23 +151,23 @@ export default class SellDrop extends Component {
             finalto =  (finalto/100)*15 + finalto
       
             
-        }else if(newOd >= 25000 && newOd <= 80000){  // price is plus 0%
+        }else if(newOd >= 25000 && newOd <= 99000){  // price is plus 0%
             this.setState({newFrom: Math.round(finalFrom), newTo: Math.round(finalto)})
-        }else if(newOd >= 80000 && newOd <= 120000){ // price is manus 30%
-          finalFrom =  finalFrom - (finalFrom/100)*30 
-          finalto =  finalto - (finalto/100)*30
+        }else if(newOd >= 99000 && newOd <= 120000){ // price is manus 30%
+          finalFrom =  finalFrom - (finalFrom/100)*5 
+          finalto =  finalto - (finalto/100)*5
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*5), newTo: Math.round(finalto - (finalto/100)*5)})
 
-          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*30), newTo: Math.round(finalto - (finalto/100)*30)})
         }else if(newOd >= 120000 && newOd <= 200000){
-          finalFrom =  finalFrom - (finalFrom/100)*45 
-          finalto =  finalto - (finalto/100)*45
-
-          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*45), newTo: Math.round(finalto - (finalto/100)*45)})
+          finalFrom =  finalFrom - (finalFrom/100)*10 
+          finalto =  finalto - (finalto/100)*10
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*10), newTo: Math.round(finalto - (finalto/100)*10)})
 
         }else if(newOd >= 200000 && newOd <= 300000){
-          finalFrom =  finalFrom - (finalFrom/100)*55 
-          finalto =  finalto - (finalto/100)*55
-          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*55), newTo: Math.round(finalto - (finalto/100)*55)})
+          finalFrom =  finalFrom - (finalFrom/100)*15
+          finalto =  finalto - (finalto/100)*15
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*15), newTo: Math.round(finalto - (finalto/100)*15)})
+
         }else{
           finalFrom =  0
           finalto =  0
@@ -209,12 +210,12 @@ export default class SellDrop extends Component {
                                 <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} /><br />
                                 <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} /><br />
                                 <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} /><br />
-                                <select className='form-control form-control-lg'><br />
+                                <select className='form-control form-control-lg'  ><br />
                                   <option value={''}>Select Type</option>
                                   <option value={'gcc'}>GCC</option>
                                   <option value={'american'}>American</option>
-                                  <option value={'american'}>Europian</option>
-                                  <option value={'american'}>Japanese</option>
+                                  <option value={'european'}>European</option>
+                                  <option value={'japanese'}>Japanese</option>
                                 </select><br />
                                 <input 
                                 type='number' 
@@ -222,9 +223,9 @@ export default class SellDrop extends Component {
                                 className='form-control form-control-lg' 
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
-                                {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {formatValue(this.state.fromPrice)} - To: {formatValue(this.state.toPrice)}</p> : ''} 
-                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: { formatValue(this.state.newFrom)} - To: {formatValue(this.state.newTo)}</h4> : ''} 
-                                {this.state.odmeter > 300000 ? <h4 className='text-center display-5'> Please contact Albacars via:<br /> albacars@albacars.ae</h4> : ''} 
+                                {/* {this.state.fromPrice > 0 ? <p className='text-center'>Before OD Meter: From: <b>{formatValue(this.state.fromPrice)}</b> AED - To: <b>{formatValue(this.state.toPrice)}</b> AED</p> : ''}  */}
+                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(this.state.newFrom)} AED <br /> To: {formatValue(this.state.newTo)} AED</h4> : ''} 
+                                {this.state.odmeter > 300000 ? <h4 className=' display-5'> Please contact Albacars via:<br /> imran@albacars.ae</h4> : ''} 
                                 <br />
                                 <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
                             </Form>
