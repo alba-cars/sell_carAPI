@@ -145,34 +145,35 @@ export default class SellDrop extends Component {
         let newOd = parseInt(this.state.odmeter)
 
         if(newOd <= 25000){ // price is plus 15%
-          this.setState({newFrom: (finalFrom/100)*15 + finalFrom, newTo: (finalto/100)*15 + finalto})
+          this.setState({newFrom: Math.round((finalFrom/100)*15 + finalFrom), newTo: Math.round((finalto/100)*15 + finalto)})
             finalFrom =  (finalFrom/100)*15 + finalFrom
             finalto =  (finalto/100)*15 + finalto
-            console.log({
-                form:finalFrom,
-                to: finalto
-            })
+      
             
         }else if(newOd >= 25000 && newOd <= 80000){  // price is plus 0%
-            this.setState({newFrom: finalFrom, newTo: finalto})
+            this.setState({newFrom: Math.round(finalFrom), newTo: Math.round(finalto)})
         }else if(newOd >= 80000 && newOd <= 120000){ // price is manus 30%
           finalFrom =  finalFrom - (finalFrom/100)*30 
           finalto =  finalto - (finalto/100)*30
 
-          this.setState({newFrom: finalFrom - (finalFrom/100)*30, newTo: finalto - (finalto/100)*30})
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*30), newTo: Math.round(finalto - (finalto/100)*30)})
         }else if(newOd >= 120000 && newOd <= 200000){
           finalFrom =  finalFrom - (finalFrom/100)*45 
           finalto =  finalto - (finalto/100)*45
 
-          this.setState({newFrom: finalFrom - (finalFrom/100)*45, newTo: finalto - (finalto/100)*45})
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*45), newTo: Math.round(finalto - (finalto/100)*45)})
 
-    }else{
-    finalFrom =  0
-    finalto =  0
+        }else if(newOd >= 200000 && newOd <= 300000){
+          finalFrom =  finalFrom - (finalFrom/100)*55 
+          finalto =  finalto - (finalto/100)*55
+          this.setState({newFrom: Math.round(finalFrom - (finalFrom/100)*55), newTo: Math.round(finalto - (finalto/100)*55)})
+        }else{
+          finalFrom =  0
+          finalto =  0
 
-    this.setState({newFrom: 0, newTo: 0})
+          this.setState({newFrom: 0, newTo: 0})
+            }
         }
-    }
 
   componentDidMount(){
       this.getOptions()
@@ -187,7 +188,7 @@ export default class SellDrop extends Component {
               {/*begin::Wrapper*/}
               <div className="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
                 {/*begin::Header*/}
-                <Header page={'Users'}/>
+                <Header page={'Home'}/>
                
                 {/*begin::Tables Cars*/}
                 <div className="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -222,7 +223,7 @@ export default class SellDrop extends Component {
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
                                 {this.state.fromPrice > 0 ? <p>Before OD Meter: From: {formatValue(this.state.fromPrice)} - To: {formatValue(this.state.toPrice)}</p> : ''} 
-                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: { formatValue(this.state.newFrom)} - To: {formatValue(this.state.newTo)}</h4> : ''} 
+                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'>After OD Meter<br /> From: { formatValue(this.state.newFrom)} - To: {formatValue(this.state.newTo)}</h4> : ''} 
                                 {this.state.odmeter > 300000 ? <h4 className='text-center display-5'> Please contact Albacars via:<br /> albacars@albacars.ae</h4> : ''} 
                                 <br />
                                 <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
