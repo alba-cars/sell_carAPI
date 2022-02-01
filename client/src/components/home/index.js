@@ -76,7 +76,7 @@ export default class SellDrop extends Component {
         });
       }
     }
-    // console.log(options);
+    options.sort((a, b) => a.label > b.label ? 1 : -1)
 
     this.setState({selectModelOptions: options, make: e.label})
   }
@@ -100,7 +100,7 @@ export default class SellDrop extends Component {
         });
       }
     }
-    // console.log(options);
+    options.sort((a, b) => a.label > b.label ? 1 : -1)
 
     this.setState({selectTrimOptions: options, model: e.label})
   }
@@ -110,21 +110,21 @@ export default class SellDrop extends Component {
       return value.Make == this.state.make && value.Model == this.state.model && value.Trim == e.label
     });
 
-    let lookup = {};
-    let options = [];
+    let lookup = {}
+    let options = []
 
     for (let item, i = 0; item = filteredTrimData[i++];) {
-      let year = item.Year;
+      let year = item.Year
 
       if (!(year in lookup)) {
-        lookup[year] = 1;
+        lookup[year] = 1
         options.push({
           "value" : item._id,
           "label" : year
         });
       }
     }
-    options.sort((a, b) => a.label > b.label ? -1 : 1);
+    options.sort((a, b) => a.label > b.label ? -1 : 1)
 
     // console.log(options);
 
@@ -237,7 +237,7 @@ export default class SellDrop extends Component {
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
                                 {this.state.fromPrice > 0 ? <p className='text-center'>Before OD Meter: From: <b>{formatValue(this.state.fromPrice)}</b> AED - To: <b>{formatValue(this.state.toPrice)}</b> AED</p> : ''} 
-                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(Math.round(this.state.newFrom*1.15))} AED <br /> To: {formatValue(Math.round(this.state.newTo*1.15))} AED </h4> : ''} 
+                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(Math.round(this.state.newFrom*1.12))} AED <br /> To: {formatValue(Math.round(this.state.newTo*1.12))} AED </h4> : ''} 
                                 {this.state.odmeter > 300000 || this.state.spec == 'american' || this.state.spec == 'european' || this.state.spec == 'japanese'? 
                                 <h4 className=' display-5'> Please contact Albacars via:<br /> imran@albacars.ae </h4> : ''} 
                                 <br />
