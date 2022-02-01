@@ -124,6 +124,8 @@ export default class SellDrop extends Component {
         });
       }
     }
+    options.sort((a, b) => a.label > b.label ? -1 : 1);
+
     // console.log(options);
 
     this.setState({selectYearOptions: options, trim: e.label})
