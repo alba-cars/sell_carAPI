@@ -28,6 +28,7 @@ export default class SellDrop extends Component {
       toPrice: '',
       newFrom: '',
       newTo: '',
+      reset: false,
       data: []
     }
   }
@@ -136,7 +137,9 @@ export default class SellDrop extends Component {
   }
 
    setOdmeter = (e) =>  {this.setState({odmeter: e.target.value })}
-   setSpec = (e) =>  {this.setState({spec: e.target.value })}
+   setSpec = (e) =>  {
+     this.setState({spec: e.target.value })
+    }
 
     clickMe = (e) => {
         e.preventDefault()
@@ -176,6 +179,13 @@ export default class SellDrop extends Component {
             }
         }
 
+    reset =()=>{
+      this.setState({ 
+
+        odmeter: 0,
+       newFrom: '',  newTo: '', reset: true})
+    }
+
   componentDidMount(){
       this.getOptions()
   }
@@ -204,13 +214,14 @@ export default class SellDrop extends Component {
                 <div className='col card card-danger' >
                     <h3 className='card-header display-6'> Fill the Options Below </h3>
                     <div className='card-body'>
-                
+                    <div className='text-right'><button className='btn btn-danger' onClick={this.reset} type='reset'>Reset</button></div><br />
+
                             <Form>
                                 <Select options={this.state.selectMakeOptions} onChange={this.handleMakeChange.bind(this)} /> <br />
                                 <Select options={this.state.selectModelOptions} onChange={this.handleModelChange.bind(this)} /><br />
                                 <Select options={this.state.selectTrimOptions} onChange={this.handleTrimChange.bind(this)} /><br />
                                 <Select options={this.state.selectYearOptions} onChange={this.handleYearChange.bind(this)} /><br />
-                                <select className='form-control form-control-lg'  ><br />
+                                <select className='form-control form-control-lg'  onChange={this.setSpec}><br />
                                   <option value={''}>Select Type</option>
                                   <option value={'gcc'}>GCC</option>
                                   <option value={'american'}>American</option>
@@ -224,19 +235,17 @@ export default class SellDrop extends Component {
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/>
                                 {/* {this.state.fromPrice > 0 ? <p className='text-center'>Before OD Meter: From: <b>{formatValue(this.state.fromPrice)}</b> AED - To: <b>{formatValue(this.state.toPrice)}</b> AED</p> : ''}  */}
-                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(this.state.newFrom)} AED <br /> To: {formatValue(this.state.newTo)} AED</h4> : ''} 
-                                {this.state.odmeter > 300000 ? <h4 className=' display-5'> Please contact Albacars via:<br /> imran@albacars.ae</h4> : ''} 
+                                {this.state.odmeter <= 300000 && this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(this.state.newFrom)} AED <br /> To: {formatValue(this.state.newTo)} AED </h4> : ''} 
+                                {this.state.odmeter > 300000  ? <h4 className=' display-5'> Please contact Albacars via:<br /> imran@albacars.ae </h4> : ''} 
                                 <br />
-                                <button className='btn btn-lg btn-danger col-lg-12' onClick={this.clickMe}>Find Out</button>
+                                <button className='btn btn-lg btn-warning col-lg-12' onClick={this.clickMe}>Find Out</button>
                             </Form>
                     </div>               
                 </div>
 
                 <div className='col'></div>
             </div>
-                          
 
-               
                         
                   </div>
                 </div>	
