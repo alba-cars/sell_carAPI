@@ -29,14 +29,20 @@ export default class SellDrop extends Component {
       newFrom: '',
       newTo: '',
       reset: false,
-      data: []
+      data: [],
+      loading: true
     }
   }
 
  async getOptions(){
     const res = await axios.get(`${server}/api/sellcar`)
     const data = res.data.data
-    // console.log(data)
+    
+    if(data.length > 1){
+      this.setState({loading: false})
+    }else{
+      this.setState({loading: true})
+    }
 
     let lookup = {};
     let options = [];
@@ -212,10 +218,17 @@ export default class SellDrop extends Component {
                   
                           
                          
-                          <div className='row' >
+                <div className='row' >
                 <div className='col'></div>
                 
                 <div className='col card card-danger' >
+                    {this.state.loading === true ?
+                      <div class="text-center ">
+                      <div class="spinner-border"  role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                     :<>
                     <h3 className='card-header display-6'> Fill the Options Below </h3>
                     <div className='card-body'>
                     <div className='text-right'><button className='btn btn-danger' onClick={this.reset} type='reset'>Reset</button></div><br />
@@ -238,14 +251,15 @@ export default class SellDrop extends Component {
                                 className='form-control form-control-lg' 
                                 odmeter={this.state.value}
                                 onChange={this.setOdmeter}/> */}
-                                {/* {this.state.fromPrice > 0 ? <p className='text-center'>Before OD Meter: From: <b>{formatValue(this.state.fromPrice)}</b> AED - To: <b>{formatValue(this.state.toPrice)}</b> AED</p> : ''}  */}
-                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(Math.round(this.state.newFrom))} AED <br /> To: {formatValue(Math.round(this.state.newTo))} AED </h4> : ''} 
+                                {this.state.fromPrice > 0 ? <p className='text-center'>Retail : From: <b>{formatValue(Math.round(this.state.fromPrice))}</b> AED - To: <b>{formatValue(Math.round(this.state.toPrice))}</b> AED</p> : ''} 
+                                {this.state.newFrom > 0 ? <h4 className='text-center display-5'> From: { formatValue(Math.round(this.state.newFrom/1000)*1000)} AED <br /> To: {formatValue(Math.round(this.state.newTo/1000)*1000)} AED </h4> : ''} 
                                 { this.state.spec == 'american' || this.state.spec == 'european' || this.state.spec == 'japanese'? 
                                 <h4 className=' display-5'> Please contact Albacars via:<br /> imran@albacars.ae </h4> : ''} 
                                 <br />
                                 <button className='btn btn-lg btn-warning col-lg-12' onClick={this.clickMe}>Find Out</button>
                             </Form>
-                    </div>               
+                    </div> 
+                    </>}              
                 </div>
 
                 <div className='col'></div>
