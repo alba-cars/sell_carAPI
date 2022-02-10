@@ -149,17 +149,16 @@ export default class SellDrop extends Component {
         let finalFrom =  parseInt(this.state.fromPrice )
         let finalto = parseInt(this.state.toPrice )
 
-        this.setState({newFrom: finalFrom - (finalFrom/100)*7, newTo: finalto - (finalto/100)*7})
-            finalFrom =   finalFrom - (finalFrom/100)*7
-            finalto =     finalto - (finalto/100)*7
+        this.setState({newFrom: finalFrom - (finalFrom/100)*10, newTo: finalto - (finalto/100)*4})
+            finalFrom =   finalFrom - (finalFrom/100)*10
+            finalto =     finalto - (finalto/100)*4
 
 
         // if(newOd <= 25000){ // price is plus 15%
         //   this.setState({newFrom: (finalFrom/100*15 + finalFrom), newTo: (finalto/100*15 + finalto)})
         //     finalFrom =  (finalFrom/100)*15 + finalFrom
         //     finalto =  (finalto/100)*15 + finalto
-      
-            
+       
         // }else if(newOd >= 25000 && newOd <= 99000){  // price is plus 0%
         //     this.setState({newFrom: finalFrom, newTo: finalto})
         // }else if(newOd >= 99000 && newOd <= 120000){ // price is manus 30%
@@ -180,7 +179,6 @@ export default class SellDrop extends Component {
         // }else{
         //   finalFrom =  0
         //   finalto =  0
-
         //   this.setState({newFrom: 0, newTo: 0})
         //     }
         }
