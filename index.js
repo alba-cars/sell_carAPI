@@ -73,7 +73,7 @@ app.use(
         "http://localhost:3000",
         "http://localhost:8080",
         "http://3.129.89.65",
-        "http://18.222.138.148"
+        "http://18.189.17.149"
       ],
       credentials: true,
       optionsSuccessStatus: 200 
