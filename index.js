@@ -72,7 +72,8 @@ app.use(
       origin: [
         "http://localhost:3000",
         "http://localhost:8080",
-        "http://3.129.89.65"
+        "http://3.129.89.65",
+        "http://18.222.138.148"
       ],
       credentials: true,
       optionsSuccessStatus: 200 
